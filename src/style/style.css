@@ -53,3 +53,29 @@ h1 {
     100% { color: #ffffff; }
   }
   
+
+  .menu {
+    display: flex;
+    justify-content: center;
+    background-color: #1e90ff; /* Azul de fundo */
+    padding: 10px;
+  }
+
+  .menu a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 15px 30px;
+    margin: 5px;
+    background-color: #007bff;
+    border-radius: 5px;
+    text-align: center;
+    transition: all 0.3s;
+  }
+
+  .menu a:hover {
+    background-color: #0056b3; /* Azul mais escuro ao passar o mouse */
+    color: #f8f9fa; /* Cor clara ao passar o mouse */
+    transform: scale(1.05); /* Aumenta um pouco o botão */
+  }

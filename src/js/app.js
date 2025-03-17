@@ -2,6 +2,7 @@
 let produtos = [];
 let clientes = [];
 let vendas = [];
+let vendaId = 1; // Inicializa o ID das vendas
 
 /* Função para Adicionar Produto ao HTML */
 function addProduto() {
@@ -79,9 +80,9 @@ function realizarVenda() {
     // Atualiza o estoque do produto
     produto.estoque -= quantidade;
 
-    // Realiza a venda
+    // Realiza a venda com ID incremental
     const valorTotal = produto.preco * quantidade;
-    vendas.push({ cliente: cliente.nome, valorTotal });
+    vendas.push({ id: vendaId++, cliente: cliente.nome, produto: produto.nome, produtoId: produto.id, quantidade, valorTotal });
 
     listarVendas();  // Atualiza a lista de vendas
     estoqueAtual();  // Atualiza o estoque
@@ -93,7 +94,7 @@ function listarVendas() {
     lista.innerHTML = '';  // Limpa a lista antes de exibir as novas vendas
     vendas.forEach(venda => {
         const li = document.createElement("li");
-        li.textContent = `Cliente: ${venda.cliente} - Total: R$ ${venda.valorTotal}`;
+        li.textContent = `ID: ${venda.id} - Cliente: ${venda.cliente} - Produto: ${venda.produto} - Quantidade: ${venda.quantidade} - Total: R$ ${venda.valorTotal}`;
         lista.appendChild(li);
     });
 }
@@ -109,14 +110,31 @@ function estoqueAtual() {
     });
 }
 
-/* Função para Exibir Total de Vendas no HTML */
+/* Função para Exibir Histórico e Total de Vendas no HTML */
 function exibirVendas() {
     const relatorio = document.getElementById("relatorio");
     relatorio.innerHTML = '';  // Limpa o relatório
+    
+    // Total de vendas
     const total = vendas.reduce((acc, venda) => acc + venda.valorTotal, 0);
-    const li = document.createElement("li");
-    li.textContent = `Total de Vendas: R$ ${total}`;
-    relatorio.appendChild(li);
+    const liTotal = document.createElement("li");
+    liTotal.textContent = `Total de Vendas: R$ ${total}`;
+    relatorio.appendChild(liTotal);
+    
+    // Total de produtos vendidos por ID
+    let produtosVendidos = {};
+    vendas.forEach(venda => {
+        if (!produtosVendidos[venda.produtoId]) {
+            produtosVendidos[venda.produtoId] = { nome: venda.produto, quantidade: 0 };
+        }
+        produtosVendidos[venda.produtoId].quantidade += venda.quantidade;
+    });
+    
+    Object.values(produtosVendidos).forEach(produto => {
+        const li = document.createElement("li");
+        li.textContent = `Produto: ${produto.nome} - Quantidade Vendida: ${produto.quantidade}`;
+        relatorio.appendChild(li);
+    });
 }
 
 /* Inicializa a lista de produtos e clientes ao carregar a página */
@@ -124,3 +142,57 @@ window.onload = function() {
     listarProdutos();  // Atualiza a lista de produtos
     listarClientes();  // Atualiza a lista de clientes
 };
+
+/* Função para Exibir Histórico de Vendas por Cliente */
+function relatorioVendasPorCliente() {
+    const relatorio = document.getElementById("relatorio");
+    relatorio.innerHTML = ''; // Limpa o relatório antes de exibir os dados
+
+    if (vendas.length === 0) {
+        relatorio.innerHTML = "<li>Nenhuma venda realizada.</li>";
+        return;
+    }
+
+    // Agrupar vendas por cliente
+    let vendasPorCliente = {};
+
+    vendas.forEach(venda => {
+        const cliente = clientes.find(c => c.nome === venda.cliente);
+        
+        if (!cliente) return;
+
+        if (!vendasPorCliente[cliente.id]) {
+            vendasPorCliente[cliente.id] = {
+                nome: cliente.nome,
+                telefone: cliente.telefone,
+                totalGasto: 0,
+                compras: []
+            };
+        }
+
+        vendasPorCliente[cliente.id].compras.push({
+            produto: venda.produto,
+            quantidade: venda.quantidade,
+            valorTotal: venda.valorTotal
+        });
+
+        vendasPorCliente[cliente.id].totalGasto += venda.valorTotal;
+    });
+
+    // Exibir os dados no HTML
+    Object.values(vendasPorCliente).forEach(cliente => {
+        const li = document.createElement("li");
+        li.innerHTML = `<strong>Cliente:</strong> ${cliente.nome} | <strong>Telefone:</strong> ${cliente.telefone} | <strong>Total Gasto:</strong> R$ ${cliente.totalGasto}`;
+        relatorio.appendChild(li);
+
+        // Listar produtos comprados
+        const ulCompras = document.createElement("ul");
+        cliente.compras.forEach(compra => {
+            const liCompra = document.createElement("li");
+            liCompra.textContent = `Produto: ${compra.produto} | Quantidade: ${compra.quantidade} | Valor: R$ ${compra.valorTotal}`;
+            ulCompras.appendChild(liCompra);
+        });
+
+        relatorio.appendChild(ulCompras);
+    });
+}
