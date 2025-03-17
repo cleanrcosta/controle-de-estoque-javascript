@@ -1,0 +1,19 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    padding: 40px;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+}
+
+.card {
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.btn {
+    width: 100%;
+}
