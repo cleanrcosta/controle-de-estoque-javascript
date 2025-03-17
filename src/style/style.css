@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
+    background-color: hsl(106, 56%, 61%);
     padding: 40px;
 }
 
@@ -17,3 +17,39 @@ body {
 .btn {
     width: 100%;
 }
+
+#logo {
+    width: 300px;
+    height: 250px;
+}
+
+/* Estilo para o título */
+/* Estilo para o título */
+h1 {
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+    color: #ffffff; /* Branco para contraste no fundo azul */
+    text-shadow: 0 0 10px #1e90ff, 0 0 20px #1e90ff, 0 0 30px #00bfff, 0 0 40px #00bfff;
+    animation: colorGlow 3s infinite, colorChange 6s infinite;
+  }
+  
+  /* Efeito de brilho */
+  @keyframes colorGlow {
+    0%, 100% {
+      text-shadow: 0 0 5px #000000, 0 0 10px #1e90ff, 0 0 20px #00bfff, 0 0 30px #00bfff;
+    }
+    50% {
+      text-shadow: 0 0 15px #ff0000, 0 0 25px #1e90ff, 0 0 35px #1e90ff, 0 0 45px #00bfff;
+    }
+  }
+  
+  /* Efeito de mudança de cor */
+  @keyframes colorChange {
+    0% { color: #ffffff; }
+    25% { color: hsl(88, 92%, 75%); }
+    50% { color: hsl(69, 100%, 50%); }
+    75% { color: rgb(255, 184, 31); }
+    100% { color: #ffffff; }
+  }
+  
