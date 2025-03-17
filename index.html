@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Vendas</title>
+    <script src="src/js/app.js" defer></script>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h2 { color: #333; }
+        input, button { margin: 5px 0; padding: 8px; }
+        .container { display: flex; gap: 20px; }
+        .box { padding: 10px; border: 1px solid #ccc; width: 300px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sistema de Vendas</h1>
+
+    <div class="container">
+        <!-- Cadastro de Produtos -->
+        <div class="box">
+            <h2>Cadastro de Produtos</h2>
+            <input type="text" id="produtoNome" placeholder="Nome do Produto">
+            <input type="number" id="produtoPreco" placeholder="Preço">
+            <input type="number" id="produtoEstoque" placeholder="Estoque">
+            <button onclick="addProduto()">Adicionar Produto</button>
+            <ul id="listaProdutos"></ul>
+        </div>
+
+        <!-- Cadastro de Clientes -->
+        <div class="box">
+            <h2>Cadastro de Clientes</h2>
+            <input type="text" id="clienteNome" placeholder="Nome do Cliente">
+            <input type="text" id="clienteTelefone" placeholder="Telefone">
+            <button onclick="addCliente()">Adicionar Cliente</button>
+            <ul id="listaClientes"></ul>
+        </div>
+    </div>
+
+    <!-- Realizar Venda -->
+    <div class="box">
+        <h2>Realizar Venda</h2>
+        <input type="number" id="vendaClienteId" placeholder="ID do Cliente">
+        <input type="number" id="vendaProdutoId" placeholder="ID do Produto">
+        <input type="number" id="vendaQuantidade" placeholder="Quantidade">
+        <button onclick="realizarVenda()">Vender</button>
+        <ul id="listaVendas"></ul>
+    </div>
+
+    <!-- Relatórios -->
+    <div class="box">
+        <h2>Relatórios</h2>
+        <button onclick="estoqueAtual()">Estoque Atual</button>
+        <button onclick="exibirVendas()">Total de Vendas</button>
+        <ul id="relatorio"></ul>
+    </div>
+
+</body>
+</html>
