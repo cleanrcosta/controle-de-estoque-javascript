@@ -2,6 +2,14 @@
 
 Bem-vindo ao **Sistema de Vendas**! Este projeto é uma solução completa para gerenciar produtos, clientes e vendas de forma eficiente e intuitiva. Com uma interface amigável e funcionalidades robustas, este sistema é ideal para pequenos e médios negócios que desejam otimizar suas operações de vendas. 🚀
 
+LINK DO PROJETO: <a class="nav-link" href="https://cleanrcosta.github.io/controle-de-estoque-javascript/index.html">CLIQUE AQUI!</a>
+
+PRINTS DO PROJETO:
+ <a class="nav-link" href="src/img/print-index.jpg">Print da pagina inicial</a> |
+  <a class="nav-link" href="src/img/print-produtos.jpg.jpg">Print de cadastro de produtos</a> |
+   <a class="nav-link" href="src/img/print-relatorio.jpg.jpg">Print da pagina de relatórios</a> 
+
+
 ---
 
 ## 📌 Visão Geral
