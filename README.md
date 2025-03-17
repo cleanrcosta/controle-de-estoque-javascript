@@ -85,14 +85,14 @@ Com este sistema, você pode focar no crescimento do seu negócio enquanto a tec
 
 ## 📂 Estrutura de Arquivos
 sistema-vendas/
-│
-├── index.html # Página principal do sistema
-├── src/
-│ ├── js/
-│ │ └── app.js # Lógica do sistema emJ avaScript
-│ └── style/
-│ └── style.css # Estilos personalizados
-└── README.md # Documentação do projeto
+│  
+├── index.html # Página principal do sistema  
+├── src/  
+│ ├── js/  
+│ │ └── app.js # Lógica do sistema emJ avaScript  
+│ └── style/  
+│ └── style.css # Estilos personalizados  
+└── README.md # Documentação do projeto  
 
 
 ---
